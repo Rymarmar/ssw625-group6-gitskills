@@ -114,5 +114,3 @@ and write rq2_outputs/. The commands above are the verified combined workflow.
 | RQ1_REVIEW.md | Earlier RQ1 audit and outstanding checks |
 | REPORT-INTEGRATION.md | Earlier draft edits; confirm against current RQ2 |
 | SUBMISSION-CHECKLIST.md | Remaining integration tasks |
-ed. Do not replace live Overleaf main.tex
-with the earlier downloaded source; it predates Rifat's edits.
