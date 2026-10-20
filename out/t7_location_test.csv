@@ -1,0 +1,7 @@
+unit,location_class,n,pct_cross_repo,odds_ratio_vs_other,or_ci95_low,or_ci95_high,chi2,dof,p_value,cramers_v
+file occurrences,canonical,2365,45.24,0.338,0.309,0.37,728.23,2,7.371460970984448e-159,0.156
+file occurrences,other,12539,70.94,1.0,0.947,1.056,728.23,2,7.371460970984448e-159,0.156
+file occurrences,skills-dir,14882,59.74,0.608,0.578,0.639,728.23,2,7.371460970984448e-159,0.156
+distinct contents,canonical,1762,27.98,2.581,2.243,2.97,255.59,2,3.150438417152692e-56,0.14
+distinct contents,other,3822,13.08,1.0,0.875,1.142,255.59,2,3.150438417152692e-56,0.14
+distinct contents,skills-dir,7416,25.09,2.226,1.999,2.479,255.59,2,3.150438417152692e-56,0.14

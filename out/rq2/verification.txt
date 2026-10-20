@@ -1,0 +1,106 @@
+code/rq2/rq2_first_analysis.py
+RQ2: FIRST PRELIMINARY ANALYSIS
+GITSKILLS SAMPLE DATASET
+
+1. DATASET INFORMATION
+Distinct SKILL.md contents: 13,000
+Total file occurrences: 29,786
+Contents with body under 100 characters: 145
+
+2. COMPARISON GROUPS
+Single-repository skills: 10,146
+Cross-repository reused skills: 2,854
+
+3. INSTRUCTION LENGTH
+Median length - single repository: 4,455 characters
+Median length - reused: 4,649 characters
+
+4. INSTRUCTION STRUCTURE
+Median Markdown headings - single repository: 10
+Median Markdown headings - reused: 12
+
+5. SUPPORTING REFERENCE FILES
+Single-repository skills with references: 24.9%
+Reused skills with references: 18.6%
+
+6. METHODOLOGY NOTES
+Each distinct SKILL.md content is counted once.
+Reused skills appear in at least two repositories.
+Instruction length is measured in characters.
+Markdown headings are counted outside fenced code blocks.
+Reference percentages exclude missing values.
+This is a descriptive preliminary analysis.
+The results do not establish causality.
+Actual agent efficiency is not measured.
+Token overhead will be investigated separately.
+
+Report saved to: C:\Users\benma\Documents\Codex\2026-09-28\i-add\outputs\phase2-handoff\gitskills-group6-phase2\out\rq2\rq2_first_analysis_summary.txt
+
+
+code/rq2/rq2_token_overhead.py
+Loaded 13,000 distinct SKILL.md contents.
+Instruction and repetition analysis completed.
+
+RQ2: PRELIMINARY TOKEN OVERHEAD ANALYSIS
+GITSKILLS SAMPLE DATASET
+
+1. DATASET INFORMATION
+Distinct SKILL.md contents analyzed: 13,000
+Tokenizer: cl100k_base
+Tokenized content: SKILL.md instruction body
+Token threshold: 5,000
+
+2. OVERALL RESULTS
+All skills
+Number of skills: 13,000
+Median instruction tokens: 1,177
+Skills exceeding 5,000 tokens: 5.8%
+Skills containing repeated blocks: 0.8%
+Total repeated blocks: 311
+Tokens in repeated blocks: 17,851
+Repeated-block token share: 0.08%
+
+3. SINGLE-REPOSITORY SKILLS
+Single-repository
+Number of skills: 10,146
+Median instruction tokens: 1,177
+Skills exceeding 5,000 tokens: 5.9%
+Skills containing repeated blocks: 0.8%
+Total repeated blocks: 205
+Tokens in repeated blocks: 12,702
+Repeated-block token share: 0.07%
+
+4. CROSS-REPOSITORY REUSED SKILLS
+Cross-repository reused
+Number of skills: 2,854
+Median instruction tokens: 1,180
+Skills exceeding 5,000 tokens: 5.4%
+Skills containing repeated blocks: 0.8%
+Total repeated blocks: 106
+Tokens in repeated blocks: 5,149
+Repeated-block token share: 0.10%
+
+5. METHODOLOGY NOTES
+Each distinct SKILL.md content is analyzed once.
+A reused skill appears in at least two repositories.
+Token counts exclude leading YAML front matter when detected.
+Token counts depend on the selected tokenizer.
+Repeated blocks are detected within individual files.
+Whitespace and letter case are normalized for matching.
+Only blocks with at least 80 characters and 10 words are checked.
+Fenced code blocks are excluded from repetition detection.
+Repeated-token counts exclude the first occurrence of each block.
+Repeated-block token share measures potential overhead.
+Repeated content is not necessarily unnecessary.
+Removing repeated content may affect instruction quality.
+Reuse frequency does not measure agent execution frequency.
+This is a preliminary descriptive study.
+Actual agent runtime and task success are not measured.
+
+Report saved to: C:\Users\benma\Documents\Codex\2026-09-28\i-add\outputs\phase2-handoff\gitskills-group6-phase2\out\rq2\rq2_token_overhead_summary.txt
+
+
+code/check_rq2_results.py
+PASS: rq2_first_analysis_summary.txt
+PASS: rq2_token_overhead_summary.txt
+

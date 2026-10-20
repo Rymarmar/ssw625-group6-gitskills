@@ -1,0 +1,7 @@
+duckdb>=1.1
+numpy
+pandas
+scipy
+matplotlib
+openpyxl
+tiktoken==0.14.0

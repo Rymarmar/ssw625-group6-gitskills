@@ -1,0 +1,10 @@
+{
+  "gini_population": "repository counts of all distinct contents, including single-repository contents",
+  "distinct_contents": 13000,
+  "gini_repositories_per_content": 0.4047502308053712,
+  "gini_rounded_two_decimals": 0.4,
+  "within_repository_only_contents": 524,
+  "within_contents_multiple_top_level_components": 370,
+  "pct_within_contents_multiple_top_level_components": 70.61068702290076,
+  "interpretation": "Multiple top-level path components do not by themselves establish multi-agent installation."
+}

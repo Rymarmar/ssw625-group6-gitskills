@@ -1,0 +1,25 @@
+PASS: t1_overview.csv
+PASS: t2_repos_per_content.csv
+PASS: t3_concentration.csv
+PASS: t4_top50_reused.csv
+PASS: t5_nonfork.csv
+PASS: t6_by_location.csv
+PASS: t7_location_test.csv
+PASS: 50 manually coded, distinct content hashes
+
+Manual counts: skill_type
+skill_type             general  project-specific
+group                                           
+A: top-20 reused            20                 0
+B: random cross-repo        18                 2
+C: random single-repo        7                 3
+
+Manual counts: reuse_channel
+reuse_channel             collection/mirror  independent adoption  multi-agent install  same-owner copy  template/scaffold
+group                                                                                                                     
+A: top-20 reused       0                 11                     8                    0                0                  1
+B: random cross-repo   0                 13                     1                    3                2                  1
+C: random single-repo  4                  3                     0                    0                0                  3
+
+These checks validate reproduction and label counts, not the accuracy of human judgments.
+

@@ -1,0 +1,34 @@
+RQ2: FIRST PRELIMINARY ANALYSIS
+GITSKILLS SAMPLE DATASET
+
+1. DATASET INFORMATION
+Distinct SKILL.md contents: 13,000
+Total file occurrences: 29,786
+Contents with body under 100 characters: 145
+
+2. COMPARISON GROUPS
+Single-repository skills: 10,146
+Cross-repository reused skills: 2,854
+
+3. INSTRUCTION LENGTH
+Median length - single repository: 4,455 characters
+Median length - reused: 4,649 characters
+
+4. INSTRUCTION STRUCTURE
+Median Markdown headings - single repository: 10
+Median Markdown headings - reused: 12
+
+5. SUPPORTING REFERENCE FILES
+Single-repository skills with references: 24.9%
+Reused skills with references: 18.6%
+
+6. METHODOLOGY NOTES
+Each distinct SKILL.md content is counted once.
+Reused skills appear in at least two repositories.
+Instruction length is measured in characters.
+Markdown headings are counted outside fenced code blocks.
+Reference percentages exclude missing values.
+This is a descriptive preliminary analysis.
+The results do not establish causality.
+Actual agent efficiency is not measured.
+Token overhead will be investigated separately.

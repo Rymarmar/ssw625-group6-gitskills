@@ -1,0 +1,64 @@
+id,group,name,n_repos,copies,file_sha,skill_type,task_category,reuse_channel,notes
+1,A: top-20 reused,shadcn,132,153,016f824d17974e5715a0e9a6e96af2001ee25e7c,general,frontend,independent adoption,
+2,A: top-20 reused,vercel-react-best-practices,128,188,01a98e95f73c5e510635482d1bdc1c5048fc5484,general,frontend,independent adoption,
+3,A: top-20 reused,minecraft-modpack-server,99,170,0164f7ed9b61f0214b631d72e4128e9875005cb5,general,other,independent adoption,看不出来上面三种模式
+4,A: top-20 reused,Writing Hookify Rules,95,171,008168a4c9e17e7b958a206696a838dd5823cccd,general,agent-meta,collection/mirror,
+5,A: top-20 reused,energy-procurement,93,101,0145815d0973812020f56a0b2ef45a7a78fcaff9,general,domain,collection/mirror,
+6,A: top-20 reused,caveman-compress,81,101,00ce4543b2fbd2456619657c328f5542569e76cd,general,agent-meta,independent adoption,
+7,A: top-20 reused,x-twitter-scraper,74,115,01a2745918f06640caac60196546672b4607cde1,general,data-ml,collection/mirror,
+8,A: top-20 reused,security-ownership-map,72,79,0164d0d8809825dc5bccc99e87cafb8345a6be72,general,testing,collection/mirror,
+9,A: top-20 reused,hybrid-cloud-architect,62,103,018a21f6ed74666f030ea4995144911115e1bb0c,general,devops,collection/mirror,
+10,A: top-20 reused,reverse-engineer,61,97,0096f521cf07f55a1a1be53ca166dc2f4a5a2839,general,testing,collection/mirror,可能是教agent自己写script tasks or workflows
+11,A: top-20 reused,openspec-verify-change,60,89,00d0532c9f74b6353bde51ddab04f9428e9fe25c,general,testing,independent adoption,
+12,A: top-20 reused,skill-optimizer,60,72,015758bd1497e2a51f6d1bd7c52ca98c73047038,general,agent-meta,collection/mirror,
+13,A: top-20 reused,obsidian-cli,60,65,0046c45abc11cbba48cee538e9cce9993a62747b,general,other,independent adoption,
+14,A: top-20 reused,memory-forensics,59,101,0039327c41ddecf0114e8b04b8cbfc3cd365a935,general,testing,independent adoption,看不出来是哪种
+15,A: top-20 reused,hyperframes-registry,59,72,005666575869147240a82f295ece9076c11bf681,general,frontend,independent adoption,
+16,A: top-20 reused,api-security-testing,58,93,0025fa29925f7f914c6e1fd71effa5a040e5e2ed,general,testing,collection/mirror,
+17,A: top-20 reused,varlock-claude-skill,58,91,0132aa14dae75d1ab3cdb6ed3e1450b66dcb4fcd,general,devops,collection/mirror,
+18,A: top-20 reused,ponytail-gain,57,64,012e37b6bf31da1ed4bf936ec8aff53974d5291e,general,agent-meta,template/scaffold,它是一个可复用的 Skill 模板，定义了触发条件、固定展示格式、数据来源和行为边界，能够被其他项目或 Agent 直接采用或改编
+19,A: top-20 reused,angular-migration,56,101,011ff902030b6adace0c91f9071cd2482d2286c3,general,frontend,collection/mirror,
+20,A: top-20 reused,python-performance-optimization,56,87,00111ac71c6621b29bde96496f91bc1cc65585e1,general,backend,collection/mirror,
+21,B: random cross-repo,notion-api,2,2,0144399abae95290f64bf1270cd784f4f5fe87c1,general,backend,collection/mirror,
+22,B: random cross-repo,http-kit,3,10,0085e180dac2e87d477a47ab309cbf3f80acc31e,general,backend,collection/mirror,
+23,B: random cross-repo,,2,2,007ad0b82e591066c58d04819d824d303f41356a,general,domain,same-owner copy,
+24,B: random cross-repo,minecraft-world-generation,2,8,00084d66ade136505a22992f549493df2a2f65b6,general,other,multi-agent install,
+25,B: random cross-repo,openmaic-classroom,3,4,00eb3b22c449f1567f719c2ab17f5d3cc41b4101,general,backend,collection/mirror,更偏向 AI 应用的后端集成与系统配置
+26,B: random cross-repo,auto-go,2,2,0096d4405af8800e7f63fabadef5a231f01ae3f8,general,agent-meta,multi-agent install,它更像是为了支持不同 AI Agent 平台而分发的 Skill，而不是单纯被收录进一个 Skills 合集
+27,B: random cross-repo,moai-lang-typescript,2,3,00b2338afd34deefcbd8633ee821e2619b30db06,general,frontend,collection/mirror,
+28,B: random cross-repo,,2,2,011d7bbb661f9743b049760aeb72d68ccbb41a24,general,frontend,collection/mirror,
+29,B: random cross-repo,,2,2,00c0830fe4f1340f7e7d5c130e0d56c8621a5fca,general,data-ml,collection/mirror,
+30,B: random cross-repo,signal-state-management,3,8,01270666910f5ca7dd04adb451aa470e7bf97aef,project-specific,frontend,collection/mirror,
+31,B: random cross-repo,architecture-writer,2,2,00541a52245284c7997b1e5e6fe1c83f349845ec,general,docs,same-owner copy,
+32,B: random cross-repo,github-ops,2,3,0164cb28ba4aa417a733a575d197042d83a1d30c,general,devops,collection/mirror,
+33,B: random cross-repo,bio-systems-biology-metabolic-reconstruction,2,2,01329daebc02d1de39ef7c86ac56d6599946cb81,general,domain,collection/mirror,
+34,B: random cross-repo,app-creator,7,7,00a3605a74888ddf8527f7f70b3dca2524a34722,general,devops,collection/mirror,这个仓库明确将自己定位为自定义 Skills 的集合，包含多个不同用途的 Skill
+35,B: random cross-repo,oci-functions-deploy,2,2,0046364b9c5c263cf7c2179dea126a2a8805e0b3,general,devops,independent adoption,
+36,B: random cross-repo,merge,2,2,0095af2c087d82d7d40ca093235b83f8e3168fc1,project-specific,devops,template/scaffold,
+37,B: random cross-repo,prompt-optimizer,6,20,00461c68adac6018818f56fb93eb6cd07d958d69,general,agent-meta,collection/mirror,
+38,B: random cross-repo,gh-cli-setup,4,7,00836d7176bf49398c1395d0f909c491634af917,general,devops,collection/mirror,
+39,B: random cross-repo,team-perf-opt,2,2,01aeb015c35fca16b79a67880dd9daa8a4d95f81,general,agent-meta,multi-agent install,这个案例有明确的跨 Agent 文件路径证据，分类依据比单纯根据 Skill 名称推断更充分
+40,B: random cross-repo,Fossil SCM Usage,3,3,001351451f8484912c6c8b76b740b93d38f5b058,general,devops,collection/mirror,
+41,C: random single-repo,implementing-security-information-sharing-with-stix2,1,1,008912152a14a11b5beace0a997ca114b282dc51,general,testing,,
+42,C: random single-repo,opti-review,1,1,017d502264aed7ec990899d529e10b40a213e318,project-specific,testing,,
+43,C: random single-repo,bossku-ai,1,1,00a5b405109ec7386e3fa6f06fa214d62aafb17e,project-specific,agent-meta,template/scaffold,"文件位于 packages/bossku-ai/skills/bossku-ai/SKILL.md，是 Codex 专用的 Skill 入口,BosskuAI 提供 scripts/install.sh，可以将 Agent 规则、Skills 和配置安装到其他项目中，具有可复用项目初始化工具的特征"
+44,C: random single-repo,python-coding-rules,1,1,0195fbe2edf58ee6a7376caf528daaeec0d2c435,general,backend,,
+45,C: random single-repo,azure-infra,1,1,0143f0fda69bf16531008afc7a1c2381aee8d1de,general,devops,collection/mirror,"该仓库的 README 明确说明：
+- 它将 OpenClaw Skills 自动转换为 Claude Skills Marketplace。
+- plugins/ 目录集中存放从 OpenClaw 收集并转换的 Skills。
+- 仓库属于社区 Skills 的镜像和分发集合"
+46,C: random single-repo,outage-rescue,1,1,00d4bc6eb212ce836d1387ebd4d2462a6a79a664,project-specific,backend,,
+47,C: random single-repo,story-readiness,1,1,00ec0017ee1862e3fccd96338a5d6d3c72c3c8ec,general,testing,template/scaffold,"它主要执行开发前的质量验证（Pre-implementation Quality Assurance），包括：
+- 检查 Acceptance Criteria 是否明确、可测试
+- 验证 GDD 需求和 ADR 架构引用
+- 检查依赖、资源文件以及未解决的设计问题
+- 验证 Definition of Done 和 Test Evidence
+- 输出 READY、NEEDS WORK 或 BLOCKED
+因此，testing 比 docs 或 agent-meta 更贴切。它虽然检查文档，但核心目的是质量验证，而非文档创作。这个仓库被 GitHub 标记为 Public template，包含预配置的 AI Agents、Skills、工作流和项目结构，供开发者创建游戏开发项目使用"
+48,C: random single-repo,fork-terminal,1,1,0027534af8346bfdf2a468070c17bfcc89fe088c,general,agent-meta,template/scaffold,这个 Skill 是作为可复用的项目脚手架的一部分进行分发的
+49,C: random single-repo,twitter,1,1,00fb9b4727eb39eca7f950ef5d672b913161e11a,general,domain,collection/mirror,"虽然使用 MediaUse CLI，但其核心目标是执行社交媒体业务操作，而不是开发或维护软件.仓库 README 明确说明：
+- 这是一个集中管理 MediaUse Agent Skills 的仓库。
+- 包含 Twitter、Instagram、Reddit、ChatGPT 等多个平台的 Skills。
+- 每个平台的 Skill 统一存放在 <pluginName>/SKILL.md。
+- 这些 Skills 可以安装到 Claude Code、Codex、OpenClaw 和 Cursor 等 Agent 环境"
+50,C: random single-repo,podcast-generation,1,1,0165f4180c4e3e408ba01accad6a3ad11dc2cbc1,general,data-ml,collection/mirror,"Skill 专注于一个明确的任务：使用 Azure OpenAI Realtime API 将文本转换为播客音频, 该仓库是一个大型 Agent Skills 集合，集中维护来自多个来源的 Skills"

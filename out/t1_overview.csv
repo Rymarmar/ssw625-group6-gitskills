@@ -1,0 +1,3 @@
+label,occurrences,distinct_contents,pct_occ_duplicated,contents_in_2plus_repos,pct_occ_cross_repo,pct_occ_within_repo_only
+all,29786.0,13000,67.7,2854,63.3,4.39
+body_chars>=100,29516.0,12855,67.78,2831,63.43,4.36
