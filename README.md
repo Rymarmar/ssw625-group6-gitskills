@@ -1,12 +1,13 @@
-# Group 6 - GitSkills Phase 2 analysis package
+# Group 6 — GitSkills Phase 2 analysis package
 
 Luke Spagnoli, Xiying Huang, Rifat Rahman Khan, Benedict Martinez.
 
 ## Submission status
 
-This package combines the supplied RQ1 and RQ2 analyses. The final current
-Overleaf report must still be reviewed and added. The overview diagram snapshot
-still has an empty RQ2 branch; do not submit it as a completed diagram.
+This package combines the supplied RQ1 and RQ2 analyses. The latest Overleaf report has a completed overview diagram. Add the final
+PDF to report/ after correcting its Gini value to 0.40. The older diagram
+snapshot in report/figures/ is retained for provenance and is not the final
+LaTeX-generated overview.
 See SUBMISSION-CHECKLIST.md. No API key or paid model call is needed.
 
 RQ1 studies the distribution of exact cross-repository skill reuse.
@@ -14,7 +15,7 @@ RQ2's scripts compare length, structure, token counts, and within-file repeated
 blocks between single-repository and cross-repository contents. Use the final
 question wording from the current Overleaf report, not an older ZIP.
 
-## Setup - Windows PowerShell
+## Setup — Windows PowerShell
 
 Extract this package and open a terminal in the folder containing this README.
 
@@ -34,6 +35,7 @@ not send the skill texts to an AI service. Later runs can use the local cache.
 ```powershell
 .\.venv\Scripts\python.exe code/rq1_reuse.py sample data/agent_skills_sample.db
 .\.venv\Scripts\python.exe code/rq1_reuse.py analyze
+.\.venv\Scripts\python.exe code/rq1_extra.py
 .\.venv\Scripts\python.exe code/make_figures.py
 .\.venv\Scripts\python.exe code/check_saved_results.py
 .\.venv\Scripts\python.exe code/check_report_claims.py data/agent_skills_sample.db
@@ -43,7 +45,14 @@ The sample command creates two parquet files under data/. Analyze writes seven
 tables under out/. check_saved_results compares them to supplied results/rq1/.
 make_figures generates the two RQ1 result plots under figures/. It does not
 overwrite the overview diagram. The supplemental prose checks document Gini
-and within-repository path statistics; see RQ1_REVIEW.md for unresolved claims.
+and within-repository path statistics. The newly supplied rq1_extra.py prints
+Gini = 0.40475 (0.40 rounded) and collection/mirror path shares of 15.2% for
+occurrences of the top 100 contents versus 5.0% for all occurrences. Both were
+verified against the sample; output is saved in out/rq1_extra_verified.txt.
+The path heuristic first excludes paths matching ^\.[a-z]+/ and then matches
+awesome, mirror, collection, vendor, third_party, or external case-insensitively.
+It is a path-based indicator, not proof of copying history. Earlier audit notes
+requesting these calculations are superseded by this verification.
 
 To generate a new BLANK manual coding workbook (not regenerate human labels):
 
@@ -105,3 +114,5 @@ and write rq2_outputs/. The commands above are the verified combined workflow.
 | RQ1_REVIEW.md | Earlier RQ1 audit and outstanding checks |
 | REPORT-INTEGRATION.md | Earlier draft edits; confirm against current RQ2 |
 | SUBMISSION-CHECKLIST.md | Remaining integration tasks |
+ed. Do not replace live Overleaf main.tex
+with the earlier downloaded source; it predates Rifat's edits.
