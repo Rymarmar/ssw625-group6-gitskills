@@ -14,7 +14,7 @@ RQ2's scripts compare length, structure, token counts, and within-file repeated
 blocks between single-repository and cross-repository contents. Use the final
 question wording from the current Overleaf report, not an older ZIP.
 
-## Setup — Windows PowerShell
+## Setup - Windows PowerShell
 
 Extract this package and open a terminal in the folder containing this README.
 
