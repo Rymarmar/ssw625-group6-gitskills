@@ -1,0 +1,35 @@
+RQ2: INSTRUCTION LENGTH AND STRUCTURE ANALYSIS
+GITSKILLS FULL DATASET (PARQUET)
+
+1. DATASET INFORMATION
+Distinct content hashes: 1,877,981
+Total file occurrences with non-null hashes: 3,797,117
+Representative rows: 1,877,981
+Representatives without content (excluded): 0
+Representatives with content but missing body_chars (structure excluded): 0
+Distinct contents with body under 100 characters: 19,945
+
+2. COMPARISON GROUPS (STRUCTURAL MEASURES)
+Single-repository skills analyzed: 1,571,893
+Cross-repository reused skills analyzed: 306,088
+
+3. INSTRUCTION LENGTH
+Median length - single repository: 4,548 characters
+Median length - reused: 4,903 characters
+
+4. INSTRUCTION STRUCTURE
+Median Markdown headings - single repository: 11
+Median Markdown headings - reused: 12
+
+5. SUPPORTING REFERENCE FILES
+Single-repository skills with references: 25.8%
+Reused skills with references: 26.5%
+Known reference flags - single: 1,570,707
+Known reference flags - reused: 305,730
+
+6. METHODOLOGY NOTES
+One dedup_primary representative per content hash; reuse uses distinct repository names.
+Instruction length uses the dataset's body_chars value.
+Markdown headings are counted outside correctly bounded fenced code blocks.
+Reference percentages exclude unknown values; missing text/lengths are reported.
+Results are descriptive, not measures of runtime or task success.

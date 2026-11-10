@@ -1,0 +1,4 @@
+file_sha,repo_full_name,path,exploratory_repeat_count,corrected_repeat_count,corrected_repeated_tokens,near_duplicate_candidate_count
+0c021c5af83e78e5b4d4b25da0c5558eb0f7f904,RakhilML/ReBrowse,skills/stackoverflow/skill.md,1,1,32,0
+26a681e10e146686cd62e827f2e00801364fab98,RakhilML/ReBrowse,skills/wikipedia-portal/skill.md,1,1,32,0
+1ea5db6e9a0720eba0558db26a078f83a2f2b99e,nicobit/spec-poc,.github/skills/devops-ci-cd-update/SKILL.md,1,0,0,0

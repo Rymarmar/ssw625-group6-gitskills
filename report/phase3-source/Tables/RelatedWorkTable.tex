@@ -1,0 +1,95 @@
+\begin{table*}[t]
+  \caption{Summary of related work. Rows are grouped by the artifact studied.}
+  \label{tab:related-work}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{@{}
+      >{\raggedright\arraybackslash}p{2.35cm}
+      >{\raggedright\arraybackslash}p{2.5cm}
+      >{\raggedright\arraybackslash}X
+      >{\raggedright\arraybackslash}X
+      >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \textbf{Study} & \textbf{Data and scale} & \textbf{Method} & \textbf{Key findings} & \textbf{Relation to our study} \\
+    \midrule
+    \multicolumn{5}{@{}l}{\textit{Agent skills (SKILL.md)}} \\
+    \addlinespace[2pt]
+    Destefanis et al.~\cite{destefanis2026gitskills} (GitSkills)
+      & 3,797,117 SKILL.md files from 282,200 public GitHub repositories
+      & Dataset built with GitHub code search; every occurrence kept with repository, path, and content hash
+      & About half of all skill files are exact copies of another file
+      & Our data source. We study how this reuse is distributed across repositories \\
+    \addlinespace[3pt]
+    Seddik~\cite{seddik2026constellations} (Skill Constellations)
+      & 2,193,119 skill adoptions from GitSkills
+      & Dated copy network built from the git history of every SKILL.md
+      & A few repositories are the source of almost all copies, and stars do not identify them; copies rarely receive later changes from their source
+      & Same dataset. Traces where copies come from, which our placement analysis does not verify \\
+    \addlinespace[3pt]
+    Gao et al.~\cite{gao2026registry}
+      & 18,463 registry skills (skills.sh) and 23,199 personal-use skills; 2,462 SE reuse pairs
+      & Reuse links by name matching and content similarity; analysis of later changes
+      & About 75\% of reused skills match their source (similarity $\geq$ 0.99); registry skills are longer (median 1,678 vs.\ 1,114 tokens); adopters rarely sync with upstream
+      & Similarity-based reuse complements our exact hashes; token comparison parallels RQ2 \\
+    \addlinespace[3pt]
+    Ling et al.~\cite{ling2026agentskills}
+      & 40,285 skills from the skills.sh marketplace
+      & Metadata and content analysis; category taxonomy; LLM-based risk audit
+      & Median skill is 1,414 tokens with a long tail; 46.3\% of skills share a name with another listing
+      & Name-based duplication vs.\ our content hashes; token sizes comparable to RQ2 \\
+    \addlinespace[3pt]
+    Hong et al.~\cite{hong2026smells}
+      & 238 SKILL.md files; 29 sources in a multivocal review
+      & Qualitative coding, literature review, automated smell detector
+      & Taxonomy of 13 high-level and 44 low-level components; over 99\% of files contain at least one skill smell
+      & Studies content quality; we study reuse, size, and repetition at full-dataset scale \\
+    \addlinespace[3pt]
+    Li et al.~\cite{li2026skillsbench} (SkillsBench v1)
+      & 11 domains; 7 agent--model configurations; 7,308 trajectories
+    (first version)
+      & Paired benchmark: no skills, curated skills, self-generated skills
+      & Curated skills raise pass rates by 16.2 pp on average; focused skills with 2--3 modules outperform comprehensive documentation
+      & Measures task success, which our artifact-level study does not \\
+    \midrule
+    \multicolumn{5}{@{}l}{\textit{Repository-level agent instruction files}} \\
+    \addlinespace[2pt]
+    Lulla et al.~\cite{lulla2026agents}
+      & 124 pull requests across 10 repositories
+      & Agent runs with and without an AGENTS.md file
+      & AGENTS.md associated with lower median runtime and reduced output-token use
+      & Measures efficiency of repository-level files; we characterize task-specific skills \\
+    \addlinespace[3pt]
+    Gloaguen et al.~\cite{gloaguen2026agents}
+      & Several coding agents on real-world tasks
+      & Agent evaluation with no, generated, and developer-written context files
+      & Context files did not generally improve task success and increased inference cost
+      & Shows that extra instructions have a cost; motivates measuring instruction size \\
+    \addlinespace[3pt]
+    Chatlatanagulchai et al.~\cite{chatlatanagulchai2025agentreadmes}
+      & 2,303 context files (CLAUDE.md, AGENTS.md, copilot-instructions.md) from 1,925 repositories
+      & Structure and readability metrics, commit history, content classification
+      & Files are hard to read and evolve through frequent small additions
+      & Repository-level counterpart to our structural measures (length, headings) \\
+    \addlinespace[3pt]
+    Jiang and Nam~\cite{jiang2026cursorrules}
+      & Rule files from 401 open-source repositories
+      & Qualitative coding of Cursor rules
+      & Five-theme taxonomy of context; developers reuse rules from documentation, community templates, and similar projects
+      & Reuse of another instruction artifact; parallels our collection and template placement patterns \\
+    \midrule
+    \multicolumn{5}{@{}l}{\textit{Code duplication on GitHub}} \\
+    \addlinespace[2pt]
+    Lopes et al.~\cite{lopes2017dejavu} (D\'ej\`aVu)
+      & 428 million files from 4.5 million non-fork projects (Java, C++, Python, JavaScript)
+      & File hashes, token hashes, and SourcererCC clone detection
+      & 70\% of files are copies of other files; duplication can bias studies that sample GitHub
+      & Precedent for our hash-based reuse measurement (RQ1) \\
+    \midrule
+    \textbf{This study}
+      & 3,797,117 files; 1,877,981 distinct contents (full GitSkills)
+      & Exact content hashes; manual coding of 50 contents; length, heading, token, and repetition measures
+      & 54.9\% of files are cross-repository copies; top 10\% of reused contents hold about half of cross-repository files; median tokens 1,206 (single-repository) vs.\ 1,257 (reused)
+      & -- \\
+    \bottomrule
+  \end{tabularx}
+\end{table*}

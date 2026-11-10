@@ -1,0 +1,60 @@
+{
+  "description": "Unreviewed textual evidence; do not call these verified TP/FP/FN.",
+  "source_parquet": "/Users/Rifat/ssw625_project/data/artifacts/part-00000.parquet",
+  "comparison": "Exploratory raw splitter versus corrected Phase 3 parser",
+  "candidate_hashes": [
+    "0c021c5af83e78e5b4d4b25da0c5558eb0f7f904",
+    "26a681e10e146686cd62e827f2e00801364fab98",
+    "1ea5db6e9a0720eba0558db26a078f83a2f2b99e"
+  ],
+  "records": [
+    {
+      "file_sha": "0c021c5af83e78e5b4d4b25da0c5558eb0f7f904",
+      "repo_full_name": "RakhilML/ReBrowse",
+      "path": "skills/stackoverflow/skill.md",
+      "exploratory_repeat_count": 1,
+      "corrected_repeat_count": 1,
+      "corrected_repeated_tokens": 32,
+      "exact_repeat_examples": [
+        {
+          "first_paragraph": 2,
+          "repeated_paragraph": 3,
+          "first_excerpt": "| Property | Value |\n|----------|-------|\n| Method | GET |\n| Reliability | 0.2 |\n| Idempotency | safe |",
+          "repeat_excerpt": "| Property | Value |\n|----------|-------|\n| Method | GET |\n| Reliability | 0.2 |\n| Idempotency | safe |"
+        }
+      ],
+      "near_duplicate_candidates": [],
+      "exploratory_only_possible_causes": ""
+    },
+    {
+      "file_sha": "26a681e10e146686cd62e827f2e00801364fab98",
+      "repo_full_name": "RakhilML/ReBrowse",
+      "path": "skills/wikipedia-portal/skill.md",
+      "exploratory_repeat_count": 1,
+      "corrected_repeat_count": 1,
+      "corrected_repeated_tokens": 32,
+      "exact_repeat_examples": [
+        {
+          "first_paragraph": 2,
+          "repeated_paragraph": 4,
+          "first_excerpt": "| Property | Value |\n|----------|-------|\n| Method | GET |\n| Reliability | 0.2 |\n| Idempotency | safe |",
+          "repeat_excerpt": "| Property | Value |\n|----------|-------|\n| Method | GET |\n| Reliability | 0.2 |\n| Idempotency | safe |"
+        }
+      ],
+      "near_duplicate_candidates": [],
+      "exploratory_only_possible_causes": ""
+    },
+    {
+      "file_sha": "1ea5db6e9a0720eba0558db26a078f83a2f2b99e",
+      "repo_full_name": "nicobit/spec-poc",
+      "path": ".github/skills/devops-ci-cd-update/SKILL.md",
+      "exploratory_repeat_count": 1,
+      "corrected_repeat_count": 0,
+      "corrected_repeated_tokens": 0,
+      "exact_repeat_examples": [],
+      "near_duplicate_candidates": [],
+      "exploratory_only_possible_causes": "Front matter, fenced code, or different paragraph segmentation may explain discrepancies; inspect the full source before assigning a label."
+    }
+  ],
+  "not_found": []
+}

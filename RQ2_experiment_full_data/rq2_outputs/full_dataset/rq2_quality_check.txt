@@ -1,0 +1,7 @@
+Content hashes: 1,877,981
+Occurrences with non-null hash: 3,797,117
+Representative rows: 1,877,981
+Missing content: 0
+Missing body_chars among fetched content: 0
+Structure analyzed: 1,877,981
+Token analyzed: 1,877,981

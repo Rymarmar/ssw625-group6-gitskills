@@ -1,0 +1,44 @@
+test_crlf_normalized (test_example_audit.ExampleAuditTests.test_crlf_normalized) ... ok
+test_duplicate_text_detected (test_example_audit.ExampleAuditTests.test_duplicate_text_detected) ... ok
+test_fenced_repetition_not_counted (test_example_audit.ExampleAuditTests.test_fenced_repetition_not_counted) ... ok
+test_frontmatter_not_counted_as_first_match (test_example_audit.ExampleAuditTests.test_frontmatter_not_counted_as_first_match) ... ok
+test_extract_body_preserves_phase2_rules (test_full_analysis.FullAnalysisTests.test_extract_body_preserves_phase2_rules) ... ok
+test_structure_and_token_statistics (test_full_analysis.FullAnalysisTests.test_structure_and_token_statistics) ... ok
+test_two_part_resume_and_full_report (test_full_analysis.FullAnalysisTests.test_two_part_resume_and_full_report) ... Dataset: C:\Users\benma\AppData\Local\Temp\tmphn1q7a9x\data\artifacts (2 Parquet parts)
+Computing distinct repository counts for every file_sha in the full dataset...
+Reuse table: 2 content hashes; 3 occurrences with non-null hashes.
+[1/2] Processing part-00000.parquet...
+Completed part-00000.parquet: 1 representatives.
+
+1 Parquet parts remain. No final full-data report has been written. Rerun the same command without --max-parts to resume.
+Dataset: C:\Users\benma\AppData\Local\Temp\tmphn1q7a9x\data\artifacts (2 Parquet parts)
+Using existing full-dataset reuse-count table.
+[1/2] Already complete: part-00000.parquet
+[2/2] Processing part-00001.parquet...
+Completed part-00001.parquet: 1 representatives.
+All Parquet parts analyzed. Aggregating saved per-content measurements...
+
+Saved full-data results to C:\Users\benma\AppData\Local\Temp\tmphn1q7a9x\RQ2_experiment_full_data\rq2_outputs\full_dataset
+  rq2_first_analysis_summary.txt
+  rq2_token_overhead_summary.txt
+  rq2_quality_check.txt
+ok
+test_closer_with_trailing_text_is_invalid (test_parsing.HeadingFenceRegressionTests.test_closer_with_trailing_text_is_invalid) ... ok
+test_different_fence_character_does_not_close (test_parsing.HeadingFenceRegressionTests.test_different_fence_character_does_not_close) ... ok
+test_longer_valid_closer_and_indent (test_parsing.HeadingFenceRegressionTests.test_longer_valid_closer_and_indent) ... ok
+test_no_fence_counts_normal_headings (test_parsing.HeadingFenceRegressionTests.test_no_fence_counts_normal_headings) ... ok
+test_same_rule_for_code_block_removal (test_parsing.HeadingFenceRegressionTests.test_same_rule_for_code_block_removal) ... ok
+test_shorter_backtick_fence_must_not_close (test_parsing.HeadingFenceRegressionTests.test_shorter_backtick_fence_must_not_close) ... ok
+test_shorter_tilde_fence_must_not_close (test_parsing.HeadingFenceRegressionTests.test_shorter_tilde_fence_must_not_close) ... ok
+test_crlf_blank_lines_match_lf (test_parsing.RepetitionNewlineRegressionTests.test_crlf_blank_lines_match_lf) ... ok
+test_crlf_with_spaced_blank_line (test_parsing.RepetitionNewlineRegressionTests.test_crlf_with_spaced_blank_line) ... ok
+test_lf_blank_lines_detect_duplicate (test_parsing.RepetitionNewlineRegressionTests.test_lf_blank_lines_detect_duplicate) ... ok
+test_old_mac_cr_blank_lines_match_lf (test_parsing.RepetitionNewlineRegressionTests.test_old_mac_cr_blank_lines_match_lf) ... ok
+test_repetition_inside_fence_is_not_counted (test_parsing.RepetitionNewlineRegressionTests.test_repetition_inside_fence_is_not_counted) ... ok
+test_subthreshold_blocks_are_not_counted (test_parsing.RepetitionNewlineRegressionTests.test_subthreshold_blocks_are_not_counted) ... ok
+test_third_occurrence_counts_twice (test_parsing.RepetitionNewlineRegressionTests.test_third_occurrence_counts_twice) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 1.177s
+
+OK

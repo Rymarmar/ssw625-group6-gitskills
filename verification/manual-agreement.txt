@@ -1,0 +1,8 @@
+question     subset  n  pct_agree  cohen_kappa
+      Q1     all 50 50       90.0         0.62
+      Q1 groups A+B 40       95.0         0.64
+      Q2     all 50 50       92.0         0.91
+      Q2 groups A+B 40       92.5         0.91
+      Q3     all 50 50       76.0         0.62
+      Q3 groups A+B 40       75.0         0.55
+16 contents with at least one disagreement -> verification/manual_disagreements_recomputed.csv

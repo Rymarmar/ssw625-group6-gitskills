@@ -1,0 +1,50 @@
+RQ2: INSTRUCTION TOKEN AND REPETITION ANALYSIS
+GITSKILLS FULL DATASET (PARQUET)
+
+1. DATASET INFORMATION
+Distinct content hashes: 1,877,981
+Representatives without content (excluded): 0
+Tokenizer: cl100k_base
+Tokenized content: SKILL.md instruction body (excluding parsed front matter)
+Token threshold: 5,000
+
+2. OVERALL RESULTS
+All skills
+Number of skills analyzed: 1,877,981
+Median instruction tokens: 1,213
+Skills exceeding 5,000 tokens: 5.8%
+Skills containing repeated blocks: 0.7%
+Total repeated blocks: 49,179
+Tokens in repeated blocks: 2,823,988
+Repeated-block token share: 0.08%
+
+3. SINGLE-REPOSITORY SKILLS
+Single-repository
+Number of skills analyzed: 1,571,893
+Median instruction tokens: 1,206
+Skills exceeding 5,000 tokens: 5.8%
+Skills containing repeated blocks: 0.7%
+Total repeated blocks: 43,150
+Tokens in repeated blocks: 2,413,817
+Repeated-block token share: 0.08%
+
+4. CROSS-REPOSITORY REUSED SKILLS
+Cross-repository reused
+Number of skills analyzed: 306,088
+Median instruction tokens: 1,257
+Skills exceeding 5,000 tokens: 6.1%
+Skills containing repeated blocks: 0.6%
+Total repeated blocks: 6,029
+Tokens in repeated blocks: 410,171
+Repeated-block token share: 0.07%
+
+5. METHODOLOGY NOTES
+Each distinct content hash is counted once, using its designated primary representative.
+A reused skill occurs in at least two distinct repositories.
+The cl100k_base tokenizer measures instruction-body text, not agent-execution tokens.
+Front matter is removed only when it begins the file and has a closing delimiter.
+CRLF/CR line endings are normalized before paragraph splitting.
+Repeated blocks must contain at least 80 normalized characters and 10 words.
+Whitespace and case are normalized; valid fenced code blocks are excluded.
+Repeated-token counts exclude the first occurrence of each block.
+Repeated text may be useful; no token savings or agent performance is inferred.
