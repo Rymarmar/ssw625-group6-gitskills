@@ -1,3 +1,5 @@
+> HISTORICAL PHASE 2 NOTES. Superseded by the root Phase 3 README.
+
 # Group 6 — what remains before submission
 
 ## 1. Export the CURRENT Overleaf project
@@ -53,15 +55,9 @@ cutoff is a chosen descriptive threshold, not an agent or model capacity limit.
 
 ## 4. Resolve the RQ1 audit points
 
-- Check the reported Gini with Xiying: all-content repository-count Gini is
-  0.4047502308053712 (0.405 at three decimals, 0.40 at two).
-- Obtain/document the exact query for the collection/mirror 15.2% vs 5.0%
-  statement, or omit that unsupported-in-package statistic if not recoverable.
-- Say 78% occur in only one repository in this sample, not "never reused."
-- Say 24 of 40 manually coded cross-repository contents were labeled
-  collection/mirror, not that this is the share of all copies.
-- Explain content-level location uses the designated representative.
-- Reconcile group C hosting categories with the manual codebook's n/a guidance.
+Done in Phase 3: Gini, the collection/mirror query, the codebook and the manual
+analysis are resolved (see the status note in RQ1_REVIEW.md). Run
+`code/check_paper_numbers.py` after editing the report.
 
 ## 5. Package and submit
 

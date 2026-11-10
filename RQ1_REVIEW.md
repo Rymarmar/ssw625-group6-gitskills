@@ -1,4 +1,21 @@
+> HISTORICAL PHASE 2 NOTES. Superseded by the root Phase 3 README.
+
 # Review of the supplied Phase 2 package
+
+> **Status update (Phase 3).** This review was written for the Phase 2 sample
+> analysis. Since then:
+> - RQ1 was re-run on the full dataset (`results/rq1_full/`); the report now uses
+>   those numbers (Gini 0.38 on the full dataset).
+> - The collection/mirror query is in `code/rq1_extra.py` (README explains it).
+> - A second author coded the 50 contents independently; kappa, disagreements and
+>   final codes are in `results/rq1/`. The manual counts below (20/0, 18/2, 7/3;
+>   24 and nine) are the Phase 2 single-coder counts and are superseded by
+>   `results/rq1/manual_final.csv`.
+> - The codebook was aligned with the report (placement patterns, same-owner copy,
+>   group C rule).
+> - `code/check_paper_numbers.py` checks every RQ1 number in the report.
+>
+> Items 2, 3 and 4 below are resolved. The rest of this file is kept as a record.
 
 ## Verified
 

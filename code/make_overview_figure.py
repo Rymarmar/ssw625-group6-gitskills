@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, Rectangle, Ellipse, Polygon
 import numpy as np, sys
 OUT=sys.argv[1]
-plt.rcParams["font.family"]="Liberation Serif"
+plt.rcParams.update({"font.family": "serif", "font.serif": ["Liberation Serif", "Times New Roman", "DejaVu Serif"]})
 K="#111111"; RED="#d03a2b"; BLUE="#2b6fb0"; TEAL="#3aa0b5"
 PINK="#dc9a94"; LILAC="#cdc5df"; YEL="#fbeeb0"; CELL="#a9cbe8"
 W,H=100,66
@@ -39,15 +39,15 @@ def arrow(pts,color=K,lw=0.9):
 
 # ================= Data Preparation =================
 region(2,36,96,28,"Data Preparation")
-docs(4,44.5,9.5,9,"GitSkills\nSample")
+docs(4,44.5,9.5,9,"GitSkills\nFull Dataset")
 ax.add_patch(FancyBboxPatch((17.5,40.5),13,17,boxstyle="round,pad=0,rounding_size=1",fc="white",ec=K,lw=0.9))
-for i,t in enumerate(["repo / path","file_sha","front matter","body length"]):
+for i,t in enumerate(["repo / path","file_sha","front matter","body text"]):
     box(18.5,53.2-i*4.0,11,3.2,t)
 label(24,39.6,"Information\nExtraction")
 arrow([(15.2,49),(17.5,49)])
 rbox(34,40.5,4.6,17,"Grouping by file_sha",rot=90)
 arrow([(30.5,49),(34,49)])
-cyl(42.5,44,10.5,9,"Content\nGroups\n(13,000)")
+cyl(42.5,44,10.5,9,"Content\nGroups\n(1,877,981)")
 arrow([(38.6,49),(42.5,49)])
 # per-content table (matrix look)
 tx,ty,tw,th=58,42.5,15,13
@@ -60,11 +60,27 @@ for j,c in enumerate(cols):
         ax.add_patch(Rectangle((tx+1+j*cw,ty+th-3.3-(i+1)*2.1),cw,2.1,fc=CELL if (i+j)%2==0 else "white",ec=K,lw=0.4))
 label(tx+tw/2,ty-1.0,"Per-content Table")
 arrow([(53,49),(58,49)],color=RED)
-rbox(79,43.5,16,11,"Stratified Sampling\n\n20 top reused\n20 cross-repo\n10 single-repo",fs=6.2)
+rbox(79,43.5,16,11,"Stratified Sampling\n(public sample)\n20 top reused\n20 cross-repo\n10 single-repo",fs=6.2)
 arrow([(73,49),(79,49)],color=BLUE)
 
 # ================= RQ2 =================
-region(2,2,29,29.5,"RQ2: Complexity",note=None)
+region(2,2,29,29.5,"RQ2: Complexity",right=True)
+# source: one primary copy per content, split by reuse group
+ax.add_patch(FancyBboxPatch((3.5,10),7,12,boxstyle="round,pad=0,rounding_size=0.9",fc="white",ec=K,lw=0.9))
+for i,(t,n) in enumerate([("single","1,571,893"),("reused","306,088")]):
+    yy=17.2-i*5.2
+    ax.add_patch(Rectangle((4.4,yy),5.2,3.6,fc=CELL if i else "white",ec=K,lw=0.5))
+    ax.text(7,yy+1.8,f"{t}\n{n}",ha="center",va="center",fontsize=5.4,weight="bold",linespacing=1.05)
+label(7,9.1,"Reuse\nGroups",fs=6.3)
+qx=13.5; qw=10
+rbox(qx,21,qw,4.6,"Structure\n(length, headings)",fs=5.8)
+rbox(qx,13.6,qw,4.6,"Token Count\n(cl100k_base)",fs=5.8)
+rbox(qx,6.2,qw,4.6,"Repeated\nBlocks",fs=5.8)
+for yy in (23.3,8.5): arrow([(10.5,16),(11.9,16),(11.9,yy),(qx,yy)])
+arrow([(10.5,16),(qx,16)])
+box(25.5,6.2,4,19.4,"RQ2 Results",fc=LILAC,rot=90)
+for yy in (23.3,15.9,8.5): arrow([(qx+qw,yy),(25.5,yy)])
+ax.text(14.8,3.6,"compare medians, %",fontsize=5.6,style="italic",ha="center",va="center")
 
 # ================= RQ1 =================
 region(34,2,37,29.5,"RQ1: Exact Reuse",right=True)
@@ -92,11 +108,12 @@ rbox(78.5,17.3,10.5,4.3,"Explore")
 rbox(78.5,10.6,10.5,4.3,"Analyze",fc=YEL)
 rbox(78.5,4.6,10.5,4.3,"Synthesize")
 arrow([(83.75,17.3),(83.75,14.9)]); arrow([(83.75,10.6),(83.75,8.9)])
-ax.text(90.3,12.75,"type\ntask\nchannel",fontsize=5.5,ha="left",va="center",linespacing=1.05)
+ax.text(90.3,12.75,"type\ntask\nplacement",fontsize=5.5,ha="left",va="center",linespacing=1.05)
 
 # ================= cross-region flows =================
 # red: per-content table -> RQ1 distribution and RQ2 relate
 arrow([(65.5,40.0),(65.5,33),(41.25,33),(41.25,21)],color=RED)
+arrow([(41.25,33),(7,33),(7,22)],color=RED)
 
 ax.text(53,33.4,"reuse counts",fontsize=6.3,weight="bold",ha="center",va="bottom")
 # blue: sampling -> manual analysis
@@ -104,6 +121,6 @@ arrow([(93.5,43.5),(93.5,25.8)],color=BLUE)
 ax.text(92.8,33.4,"50 groups",fontsize=6.3,weight="bold",ha="right",va="center")
 # manual -> RQ1 results
 arrow([(78.5,6.75),(69.5,6.75)],color=BLUE)
-ax.text(74,8.2,"reuse\nchannels",fontsize=5.8,weight="bold",ha="center",va="bottom",linespacing=1.0,bbox=dict(fc="white",ec="none",pad=0.4),zorder=6)
+ax.text(74,8.2,"placement\npatterns",fontsize=5.8,weight="bold",ha="center",va="bottom",linespacing=1.0,bbox=dict(fc="white",ec="none",pad=0.4),zorder=6)
 fig.subplots_adjust(0,0,1,1)
 fig.savefig(OUT+".pdf"); fig.savefig(OUT+".png",dpi=220)

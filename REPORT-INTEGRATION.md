@@ -1,3 +1,5 @@
+> HISTORICAL PHASE 2 NOTES. Superseded by the root Phase 3 README.
+
 # Benedict's Phase 2 integration checklist
 
 The Overleaf ZIP has a blank RQ2 question. The previously supplied PDF and pasted

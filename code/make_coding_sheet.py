@@ -46,24 +46,14 @@ sheet = pd.DataFrame({
     "content_preview (first 800 chars)": s.content.fillna("").str.slice(0, 800),
     "Q1 skill_type": "",
     "Q2 task_category": "",
-    "Q3 reuse_channel": "",
+    "Q3 placement_pattern": "",
     "Q4 notes": "",
     "file_sha": s.file_sha,
 })
 
-codebook = pd.DataFrame([
-    ("Q1 skill_type", "general", "通用：任何项目都能用（如 React 最佳实践、写 commit message）"),
-    ("Q1 skill_type", "project-specific", "项目专用：提到某个具体项目的文件、命令、业务"),
-    ("Q1 skill_type", "unclear", "看不出来 / 内容太短 / 只是链接"),
-    ("Q2 task_category", "frontend / backend / devops / testing / docs / data-ml / agent-meta / domain / other",
-     "任务类别，选最贴切的一个；agent-meta = 关于 agent 本身（写 skill、写规则）；domain = 非软件领域（如能源采购）"),
-    ("Q3 reuse_channel", "multi-agent install", "同一内容出现在 .agents/ .claude/ .codex/ .trae/ 等多个 agent 配置目录"),
-    ("Q3 reuse_channel", "collection/mirror", "出现在 awesome-xxx、mirror、skills 合集类仓库或路径里"),
-    ("Q3 reuse_channel", "template/scaffold", "出现在 template、starter、boilerplate 类路径里"),
-    ("Q3 reuse_channel", "independent adoption", "被很多普通项目各自复制进来，看不出上面三种模式"),
-    ("Q3 reuse_channel", "n/a", "C 组（只在 1 个仓库）不用填"),
-    ("Q4 notes", "free text", "任何有意思的发现，写进报告时可引用"),
-], columns=["question", "code", "meaning"])
+from pathlib import Path
+# Single source of truth for the final placement-pattern definitions.
+codebook = pd.read_csv(Path(__file__).resolve().parents[1] / "results/rq1/manual_codebook.csv")
 
 with pd.ExcelWriter(out, engine="openpyxl") as w:
     sheet.to_excel(w, sheet_name="coding", index=False)

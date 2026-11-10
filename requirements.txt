@@ -5,3 +5,4 @@ scipy
 matplotlib
 openpyxl
 tiktoken==0.14.0
+huggingface_hub

@@ -1,0 +1,6 @@
+Gini (repos per content, n=1877981): 0.37670
+             grp  pct_collection_mirror  occurrences
+top 100 contents                    3.4        43299
+       all files                    5.4      3797117
+ within_repo_contents  pct_multiple_top_folders
+                82413                      67.2

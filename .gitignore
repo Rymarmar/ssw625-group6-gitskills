@@ -1,0 +1,15 @@
+# Data and local environments (never upload credentials)
+.venv/
+.env
+.env.*
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+hf_raw/
+data/**/*.parquet
+data/*.parquet
+data/*.db
+data/*.zip
+RQ2_experiment_full_data/rq2_outputs/full_dataset/_work/
+*.duckdb
+*.duckdb.wal

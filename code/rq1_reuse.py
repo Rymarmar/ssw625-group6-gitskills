@@ -2,18 +2,19 @@
 RQ1: How is exact SKILL.md reuse distributed across repositories in GitSkills?
 
 Step 1, pick ONE data source:
-  a) Sample (recommended, 13k distinct skills):
+  a) Full dataset (used in the report, 3.8M files, needs internet and a Hugging Face token):
+       HF_TOKEN=hf_... python rq1_reuse.py fetch
+     Downloads the Parquet files of the artifacts and repos tables of
+     mvaccargiu/gitskills (branch refs/convert/parquet) into hf_raw/.
+  b) Public sample (13k distinct skills, used for the pilot and the manual analysis):
        python rq1_reuse.py sample agent_skills_sample.db
      The .db comes from agent_skills_sample.zip in
      https://github.com/giuseppedestefanis/gitskills-sample
-  b) Full dataset (3.8M files, needs internet):
-       python rq1_reuse.py fetch
-     Pulls only the small columns needed from Hugging Face (mvaccargiu/gitskills).
   Both write data/occ.parquet and data/repos.parquet.
 Step 2 (offline, re-runnable):  python rq1_reuse.py analyze
-    Writes CSV tables to out/ and prints a summary.
+    Writes CSV tables t0-t9 to out/ and prints a summary.
 
-Requires: pip install duckdb pandas scipy
+Requires: pip install duckdb pandas scipy (fetch also needs huggingface_hub)
 """
 import os
 import sys
@@ -24,28 +25,41 @@ import duckdb
 import numpy as np
 import pandas as pd
 
-HF = "hf://datasets/mvaccargiu/gitskills@~parquet"
 DATA, OUT = "data", "out"
 # Files shorter than this are mostly stubs/symlink text (e.g. "../.claude/SKILL.md").
 MIN_BODY_CHARS = 100
 
 
 def fetch():
+    """Download whole Parquet files first, then read the needed columns locally.
+    Reading straight from hf:// sends many small requests and hits HTTP 429."""
+    import time
+    from huggingface_hub import HfApi, hf_hub_download
+    token = os.environ.get("HF_TOKEN")
+    repo, rev, raw = "mvaccargiu/gitskills", "refs/convert/parquet", "hf_raw"
+    files = sorted(f for f in HfApi(token=token).list_repo_files(repo, repo_type="dataset", revision=rev)
+                   if f.startswith(("artifacts/train/", "repos/train/")) and f.endswith(".parquet"))
+    print(f"{len(files)} Parquet files to download")
+    for i, f in enumerate(files, 1):
+        if os.path.exists(os.path.join(raw, f)):
+            continue  # already downloaded (safe to re-run after an error)
+        for attempt in range(10):
+            try:
+                hf_hub_download(repo, f, repo_type="dataset", revision=rev, local_dir=raw, token=token)
+                break
+            except Exception as e:  # mostly HTTP 429: wait and retry
+                wait = 60 * (attempt + 1)
+                print(f"  {f}: {type(e).__name__}, retrying in {wait}s")
+                time.sleep(wait)
+        else:
+            sys.exit(f"Could not download {f}. Run fetch again later; finished files are kept.")
+        print(f"[{i}/{len(files)}] {f}")
     os.makedirs(DATA, exist_ok=True)
     con = duckdb.connect()
-    con.sql("INSTALL httpfs; LOAD httpfs;")
-    print("Downloading artifact occurrences (selected columns only)...")
-    con.sql(f"""
-        COPY (
-          SELECT {OCC_COLS}
-          FROM read_parquet('{HF}/artifacts/train/*.parquet')
-        ) TO '{DATA}/occ.parquet' (FORMAT parquet)
-    """)
-    print("Downloading repository metadata...")
-    con.sql(f"""
-        COPY (SELECT * EXCLUDE (description) FROM read_parquet('{HF}/repos/train/*.parquet'))
-        TO '{DATA}/repos.parquet' (FORMAT parquet)
-    """)
+    con.sql(f"""COPY (SELECT {OCC_COLS} FROM read_parquet('{raw}/artifacts/train/*.parquet'))
+                TO '{DATA}/occ.parquet' (FORMAT parquet)""")
+    con.sql(f"""COPY (SELECT * EXCLUDE (description) FROM read_parquet('{raw}/repos/train/*.parquet'))
+                TO '{DATA}/repos.parquet' (FORMAT parquet)""")
     print("Done:", con.sql(f"SELECT count(*) FROM '{DATA}/occ.parquet'").fetchone()[0], "occurrences")
 
 
@@ -76,7 +90,7 @@ def location_test(tab, unit):
         a, b, c, d = r[1], r[0], ref[1], ref[0]   # cross / not-cross for loc and for 'other'
         odds = (a * d) / (b * c)
         se = np.sqrt(1 / a + 1 / b + 1 / c + 1 / d)
-        rows.append({"unit": unit, "location_class": loc, "n": int(a + b),
+        rows.append({"unit": unit, "location_class": loc, "n": int(a + b), "n_cross_repo": int(a),
                      "pct_cross_repo": round(100 * a / (a + b), 2),
                      "odds_ratio_vs_other": round(odds, 3),
                      "or_ci95_low": round(odds * np.exp(-1.96 * se), 3),
@@ -128,6 +142,21 @@ def analyze():
         GROUP BY label ORDER BY label
     """, "t1_overview.csv")
 
+    # T0: exact counts behind the percentages, so every rounded number can be checked
+    save(f"""
+        SELECT label,
+               sum(occurrences)                                                  AS occurrences,
+               count(*)                                                          AS distinct_contents,
+               sum(occurrences) FILTER (WHERE occurrences > 1)                   AS occ_duplicated,
+               sum(occurrences) FILTER (WHERE n_repos > 1)                       AS occ_cross_repo,
+               sum(occurrences) FILTER (WHERE occurrences > 1 AND n_repos = 1)   AS occ_within_repo_only,
+               (SELECT count(DISTINCT repo_full_name) FROM occ)                  AS repositories_with_skills
+        FROM (SELECT 'all' AS label, * FROM grp
+              UNION ALL
+              SELECT 'body_chars>={MIN_BODY_CHARS}', * FROM grp WHERE body_chars >= {MIN_BODY_CHARS})
+        GROUP BY label ORDER BY label
+    """, "t0_exact_counts.csv")
+
     # T2: how many repos does each distinct content appear in?
     t2 = save("""
         SELECT bucket, count(*) AS distinct_contents, sum(occurrences) AS occurrences
@@ -155,6 +184,19 @@ def analyze():
         FROM x, (SELECT unnest([10, 100, 1000, 10000]) AS k)
         GROUP BY k ORDER BY k
     """, "t3_concentration.csv")
+
+    # T8: full concentration curve (for Figure 3), about 5,000 points
+    nr = con.sql("""SELECT occurrences FROM grp WHERE n_repos > 1
+                    ORDER BY n_repos DESC, occurrences DESC""").df().occurrences.values
+    cum = 100 * np.cumsum(nr) / nr.sum(); n = len(nr)
+    k = np.unique(np.concatenate([np.arange(1, min(n, 2000) + 1), np.linspace(1, n, 3000).astype(int)]))
+    pd.DataFrame({"k": k, "pct_contents": 100 * k / n, "cum_pct": cum[k - 1]}).to_csv(
+        f"{OUT}/t8_concentration_curve.csv", index=False)
+    # T9: exact share held by the top 1% and top 10% of reused contents (used in the text)
+    kk = [int(np.ceil(p / 100 * n)) for p in (1, 10)]
+    pd.DataFrame({"top_pct_of_reused_contents": [1, 10], "k": kk, "reused_contents": n,
+                  "pct_of_cross_repo_occ": [cum[k_ - 1] for k_ in kk]}).to_csv(
+        f"{OUT}/t9_top_percent_share.csv", index=False)
 
     # T4: most reused skills
     t4 = save("""

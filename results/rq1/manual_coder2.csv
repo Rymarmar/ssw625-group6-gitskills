@@ -1,0 +1,51 @@
+id,group,name,Q1,Q2,Q3,notes
+1,A: top-20 reused,shadcn,general,frontend,independent adoption,"Reusable shadcn UI guidance; many unrelated app repositories, with mostly one copy per repo. Here Q1 general means cross-project, not platform-agnostic."
+2,A: top-20 reused,vercel-react-best-practices,general,frontend,multi-agent install,Multiple locations in one repo include archived and Claude installations; mixed agent environments elsewhere. Multi-agent placement is a best-fit judgment from sampled paths.
+3,A: top-20 reused,minecraft-modpack-server,general,devops,collection/mirror,Sample locations predominantly package this as part of Hermes/skills collections rather than native project-specific configs.
+4,A: top-20 reused,Writing Hookify Rules,general,agent-meta,collection/mirror,Large skill/plugin bundles and repeated categorized collection copies dominate the sampled paths.
+5,A: top-20 reused,energy-procurement,general,domain,collection/mirror,
+6,A: top-20 reused,caveman-compress,general,agent-meta,multi-agent install,"Sampled copies reside in .qwen, .cursor, .kiro, and .continue agent folders; little evidence of within-repo duplication."
+7,A: top-20 reused,x-twitter-scraper,general,domain,collection/mirror,
+8,A: top-20 reused,security-ownership-map,general,testing,collection/mirror,
+9,A: top-20 reused,hybrid-cloud-architect,general,devops,collection/mirror,
+10,A: top-20 reused,reverse-engineer,general,testing,collection/mirror,
+11,A: top-20 reused,openspec-verify-change,general,testing,multi-agent install,"Same repo includes frontend and backend .agent copies; other agent-specific locations support multi-install, though some template paths occur."
+12,A: top-20 reused,skill-optimizer,general,agent-meta,collection/mirror,
+13,A: top-20 reused,obsidian-cli,general,docs,independent adoption,Predominantly separate vault/project installations; one sampled repo has both .agents and .claude copies.
+14,A: top-20 reused,memory-forensics,general,testing,collection/mirror,
+15,A: top-20 reused,hyperframes-registry,general,frontend,independent adoption,Mostly unrelated projects in distinct agent config directories; no same-repo multi-agent duplication visible in sampled locations.
+16,A: top-20 reused,api-security-testing,general,testing,collection/mirror,
+17,A: top-20 reused,varlock-claude-skill,general,devops,collection/mirror,
+18,A: top-20 reused,ponytail-gain,project-specific,agent-meta,independent adoption,"Ponytail-specific benchmark scoreboard using its own benchmark files, rather than transferable guidance; locations are mixed projects."
+19,A: top-20 reused,angular-migration,general,frontend,collection/mirror,
+20,A: top-20 reused,python-performance-optimization,general,backend,collection/mirror,
+21,B: random cross-repo,notion-api,general,backend,collection/mirror,
+22,B: random cross-repo,http-kit,general,backend,collection/mirror,
+23,B: random cross-repo,,general,domain,same-owner copy,"No name in metadata, but the preview identifies an electrochemistry simulation skill; both repositories belong to NeuralBlitz."
+24,B: random cross-repo,minecraft-world-generation,general,other,multi-agent install,Minecraft game worldgen/datapacks do not align cleanly with standard software categories; several same-repo .agents/.claude/.codex installs.
+25,B: random cross-repo,openmaic-classroom,general,backend,collection/mirror,
+26,B: random cross-repo,auto-go,project-specific,agent-meta,independent adoption,Autopus-only alias/router with internal paths; one copy embedded as autopus-adk-main snapshot in an unrelated repo. Independent adoption is a closest fit.
+27,B: random cross-repo,moai-lang-typescript,general,frontend,collection/mirror,
+28,B: random cross-repo,,general,frontend,collection/mirror,"Name column is blank, but the preview clearly identifies Wix site widget creation."
+29,B: random cross-repo,,general,data-ml,collection/mirror,"Name column is blank, but the preview is a Phi-3 technical paper-method skill; both copies live in research-skill collections."
+30,B: random cross-repo,signal-state-management,project-specific,frontend,collection/mirror,Description explicitly references the ree-board project and its boards/posts/members domains; multiple copies in a skills-data collection.
+31,B: random cross-repo,architecture-writer,general,docs,same-owner copy,Same GitHub owner (warsiege00) stores the file in two of their repositories; the guidance itself is reusable architecture documentation.
+32,B: random cross-repo,github-ops,general,devops,collection/mirror,
+33,B: random cross-repo,bio-systems-biology-metabolic-reconstruction,general,domain,collection/mirror,
+34,B: random cross-repo,app-creator,general,devops,independent adoption,"Seven separate repositories with one copy each; sampled paths mix ordinary apps, collection imports, and a plan snapshot, so independent adoption is a best fit."
+35,B: random cross-repo,oci-functions-deploy,general,devops,collection/mirror,
+36,B: random cross-repo,merge,project-specific,devops,template/scaffold,Uses FullSpec-specific .claude instruction index and SSOT path; original repo is used as a project template.
+37,B: random cross-repo,prompt-optimizer,general,agent-meta,collection/mirror,
+38,B: random cross-repo,gh-cli-setup,general,devops,collection/mirror,
+39,B: random cross-repo,team-perf-opt,general,agent-meta,collection/mirror,"Sampled copies are in a skill-collection snapshot and a .claude install, not multiple agent directories within the same repo."
+40,B: random cross-repo,Fossil SCM Usage,general,devops,collection/mirror,
+41,C: random single-repo,implementing-security-information-sharing-with-stix2,project-specific,domain,collection/mirror,"Metadata says adapted_for: fetih; repository bundles 900+ skills, so collection/mirror fits single-repo Group C."
+42,C: random single-repo,opti-review,project-specific,testing,n/a,
+43,C: random single-repo,bossku-ai,project-specific,agent-meta,template/scaffold,BosskuAI-specific skill router within a toolkit that installs agent scaffolding into projects; template/scaffold is borderline.
+44,C: random single-repo,python-coding-rules,general,backend,n/a,"Only one personal dotfiles repository, neither a template nor a skills collection: Group C -> n/a."
+45,C: random single-repo,azure-infra,general,devops,collection/mirror,"Single copy resides in openclaw-skills-marketplace (a skills aggregation/mirror), per Group C rule."
+46,C: random single-repo,outage-rescue,project-specific,backend,n/a,References restreamer-specific RTMP/outage UX behavior and issue identifiers; single ordinary app repository.
+47,C: random single-repo,story-readiness,project-specific,testing,template/scaffold,"GameStudio project-local framework/template with required design/gdd, production, and architecture paths."
+48,C: random single-repo,fork-terminal,project-specific,agent-meta,template/scaffold,Under scaffold/skills in a judicial-agent project; examples refer to project-specific pipeline-sentenca processing.
+49,C: random single-repo,twitter,general,domain,collection/mirror,Single hosting repository is a multi-platform agent-skills collection.
+50,C: random single-repo,podcast-generation,general,data-ml,template/scaffold,"Number-Pii/organisation is a reusable project-initialization toolkit with templates and a Teams/skills bundle; scaffold is best-fit, though borderline vs collection."

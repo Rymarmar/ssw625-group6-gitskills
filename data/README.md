@@ -1,9 +1,10 @@
-# Data
+# Data for Phase 3
 
-This project uses the GitSkills sample (Destefanis et al., 2026).
+Both quantitative RQs use the full GitSkills dataset:
+https://huggingface.co/datasets/mvaccargiu/gitskills
 
-1. Download `agent_skills_sample.zip` from https://github.com/giuseppedestefanis/gitskills-sample
-2. Unzip it into this folder, so that `data/agent_skills_sample.db` exists.
+The manual selection uses the public sample:
+https://github.com/giuseppedestefanis/gitskills-sample
 
-The database (277 MB) is not committed because it exceeds GitHub's 100 MB file limit.
-Full dataset: https://huggingface.co/datasets/mvaccargiu/gitskills
+See the root README for complete download, directory-layout and run commands.
+Raw Parquet files, SQLite databases and checkpoints are not included in GitHub.

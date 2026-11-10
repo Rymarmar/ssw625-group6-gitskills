@@ -1,116 +1,184 @@
-# Group 6 — GitSkills Phase 2 analysis package
+# Group 6 — GitSkills Phase 3
 
 Luke Spagnoli, Xiying Huang, Rifat Rahman Khan, Benedict Martinez.
 
-## Submission status
+## What this package contains
 
-This package combines the supplied RQ1 and RQ2 analyses. The latest Overleaf report has a completed overview diagram. Add the final
-PDF to report/ after correcting its Gini value to 0.40. The older diagram
-snapshot in report/figures/ is retained for provenance and is not the final
-LaTeX-generated overview.
-See SUBMISSION-CHECKLIST.md. No API key or paid model call is needed.
+Both quantitative research questions now use the **full GitSkills dataset**:
+3,797,117 file occurrences and 1,877,981 distinct contents. The manual RQ1
+review remains a stratified sample of 50 contents selected from the public
+13,000-content sample. It is not a manual review of the full dataset.
 
-RQ1 studies the distribution of exact cross-repository skill reuse.
-RQ2's scripts compare length, structure, token counts, and within-file repeated
-blocks between single-repository and cross-repository contents. Use the final
-question wording from the current Overleaf report, not an older ZIP.
+- **RQ1:** exact-content reuse across repositories, its distribution and placement patterns.
+- **RQ2:** instruction length, headings, reference presence, token counts and exact repeated blocks.
+- These are artifact measurements, not measurements of agent runtime, task success or achievable token savings.
 
-## Setup — Windows PowerShell
+| Material | Location |
+| --- | --- |
+| Full RQ1 scripts | `code/rq1_reuse.py`, `code/rq1_extra.py` |
+| Full RQ1 saved outputs | `results/rq1_full/` |
+| Manual codes, independent coders, agreement, disagreements and final codes | `results/rq1/manual_*.csv`, `manual_agreement.txt` |
+| Full RQ2 scripts and corrected parser | `RQ2_experiment_full_data/` |
+| Full RQ2 saved summaries | `RQ2_experiment_full_data/rq2_outputs/full_dataset/` |
+| RQ2 manual examples and evidence | `RQ2_experiment_full_data/rq2_outputs/example_audit/` |
+| Final report source and figures | `report/phase3-source/` |
+| Integration verification logs and scope | `verification/` |
 
-Extract this package and open a terminal in the folder containing this README.
+The files in `code/rq2/`, `results/rq2/`, the numerical tables in `results/rq1/`,
+and existing `out/` files are retained **Phase 2 pilot materials**. They are not
+the Phase 3 full-dataset outputs. Root review/checklist documents are historical
+notes and are explicitly marked as such. Use this README for the final workflow.
+
+## Setup (Windows PowerShell)
+
+Open a terminal in the folder containing this README. Python 3.10 or later is
+recommended. No OpenAI API key or paid model call is required.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Download agent_skills_sample.zip from
-https://github.com/giuseppedestefanis/gitskills-sample and extract its database
-to `data/agent_skills_sample.db`. The database is not included in this ZIP.
-The first tokenization run may download the cl100k_base vocabulary; it does
-not send the skill texts to an AI service. Later runs can use the local cache.
+Tokenization uses `cl100k_base` locally. Its first use may download the tokenizer
+vocabulary; skill contents are not sent to an LLM service.
 
-## RQ1 commands
+## Quick verification without the large dataset
 
 ```powershell
-.\.venv\Scripts\python.exe code/rq1_reuse.py sample data/agent_skills_sample.db
+.\.venv\Scripts\python.exe code/check_paper_numbers.py
+.\.venv\Scripts\python.exe -m unittest discover -s RQ2_experiment_full_data/tests -v
+.\.venv\Scripts\python.exe code/manual_agreement.py results/rq1/manual_coder1.csv results/rq1/manual_coder2.csv verification/manual_disagreements_recomputed.csv
+```
+
+If tests cannot import the RQ2 modules when launched from the root, run them
+from their own directory instead:
+
+```powershell
+Push-Location RQ2_experiment_full_data
+..\.venv\Scripts\python.exe -m unittest discover -s tests -v
+Pop-Location
+```
+
+The final integration check passed **95 RQ1 numerical consistency checks** and
+**21 RQ2 tests**. `check_paper_numbers.py` compares calculations from saved RQ1
+outputs with expected values encoded in that script. It does **not** read the
+current manuscript or independently rerun the full dataset. Test success does
+not establish that manual judgments are correct. The final integration did not
+repeat either complete full-data analysis; the supplied full-run summaries are
+the authors' saved results. See `verification/README.md` for the exact scope.
+
+## Obtain the data
+
+Full dataset: https://huggingface.co/datasets/mvaccargiu/gitskills
+
+Public sample for manual selection and the Phase 2 pilot:
+https://github.com/giuseppedestefanis/gitskills-sample
+
+Download `agent_skills_sample.zip` from the sample repository and extract the
+SQLite database to `data/agent_skills_sample.db` for the manual-selection workflow.
+The quantitative Phase 3 analyses require **all** artifact Parquet parts, not
+this sample database. Raw data and local checkpoints are omitted from GitHub.
+
+The download script uses the dataset's `refs/convert/parquet` revision. That
+reference may change; the saved results represent the dataset used by the
+authors. Preserve the downloaded source files when reproducing this snapshot.
+
+## Reproduce full RQ1
+
+Run these from the project root. The fetch step downloads raw Parquet files
+under `hf_raw/`, then writes the selected occurrence columns to `data/occ.parquet`
+and repository data to `data/repos.parquet`. It can use a Hugging Face token
+through `HF_TOKEN` if access requires one; never commit a token.
+
+```powershell
+.\.venv\Scripts\python.exe code/rq1_reuse.py fetch
 .\.venv\Scripts\python.exe code/rq1_reuse.py analyze
-.\.venv\Scripts\python.exe code/rq1_extra.py
-.\.venv\Scripts\python.exe code/make_figures.py
-.\.venv\Scripts\python.exe code/check_saved_results.py
-.\.venv\Scripts\python.exe code/check_report_claims.py data/agent_skills_sample.db
+.\.venv\Scripts\python.exe code/rq1_extra.py data/occ.parquet
+.\.venv\Scripts\python.exe code/check_saved_results.py full
 ```
 
-The sample command creates two parquet files under data/. Analyze writes seven
-tables under out/. check_saved_results compares them to supplied results/rq1/.
-make_figures generates the two RQ1 result plots under figures/. It does not
-overwrite the overview diagram. The supplemental prose checks document Gini
-and within-repository path statistics. The newly supplied rq1_extra.py prints
-Gini = 0.40475 (0.40 rounded) and collection/mirror path shares of 15.2% for
-occurrences of the top 100 contents versus 5.0% for all occurrences. Both were
-verified against the sample; output is saved in out/rq1_extra_verified.txt.
-The path heuristic first excludes paths matching ^\.[a-z]+/ and then matches
-awesome, mirror, collection, vendor, third_party, or external case-insensitively.
-It is a path-based indicator, not proof of copying history. Earlier audit notes
-requesting these calculations are superseded by this verification.
+Fresh RQ1 results go to `out/`; saved full results remain in `results/rq1_full/`.
+Do not run sample extraction between full extraction and analysis: both use
+the same working filenames. The optional full-data Colab notebook is
+`code/rq1_full_colab.ipynb`.
 
-To generate a new BLANK manual coding workbook (not regenerate human labels):
+| RQ1 saved output | Meaning |
+| --- | --- |
+| `t1_overview.csv` | File/content counts and reuse percentages |
+| `t2_repos_per_content.csv` | Repository coverage distribution |
+| `t3_concentration.csv` | Top-k concentration |
+| `t4_top50_reused.csv` | Most widely reused contents |
+| `t5_nonfork.csv` | Non-fork robustness comparison |
+| `t6_by_location.csv`, `t7_location_test.csv` | Placement classes, effect sizes and tests |
+| `t8_concentration_curve.csv` | Cumulative concentration curve |
+| `extra.txt` | Gini, path-pattern shares and within-repository duplication |
+
+The full saved run predates `t0_exact_counts.csv`, `t9_top_percent_share.csv`
+and `t7`'s `n_cross_repo` column. A fresh run also writes those. The comparison
+script skips unsaved files and compares common columns; the paper-number
+checker uses the saved concentration curve for top-percent shares.
+
+To regenerate the distribution plots:
 
 ```powershell
-.\.venv\Scripts\python.exe code/make_coding_sheet.py data/agent_skills_sample.db rq1_coding_sheet.xlsx
+.\.venv\Scripts\python.exe code/make_figures.py results/rq1_full figures
 ```
 
-The 50 completed manual labels and original codebook are in results/rq1/.
-The workbook generator's codebook predates the completed CSV codebook; clarify
-same-owner copy and group C's hosting categories as noted in RQ1_REVIEW.md.
+The authoritative final overview and both white-box diagrams are supplied in
+`report/phase3-source/Images/`. Figure numbers are assigned by LaTeX, not by the
+filenames. The old diagram generator is retained for provenance.
 
-## RQ2 commands
+## Reproduce full RQ2
+
+RQ2 needs the raw artifact Parquet files **including content**. The selected
+`data/occ.parquet` used by RQ1 does not contain everything RQ2 needs.
+After RQ1's fetch, place copies of all raw artifact parts in `data/artifacts/`:
 
 ```powershell
-.\.venv\Scripts\python.exe code/rq2/rq2_first_analysis.py
-.\.venv\Scripts\python.exe code/rq2/rq2_token_overhead.py
-.\.venv\Scripts\python.exe code/check_rq2_results.py
+New-Item -ItemType Directory -Force data/artifacts
+Copy-Item hf_raw/artifacts/train/*.parquet data/artifacts/
+Push-Location RQ2_experiment_full_data
+..\.venv\Scripts\python.exe rq2_full_analysis.py
+Pop-Location
 ```
 
-RQ2 reads the same database directly; it does not require RQ1 parquet outputs.
-New summaries go to out/rq2/. Rifat's original summaries stay in results/rq2/.
-The checker compares normalized text (ignoring outer whitespace only).
+Copying requires additional disk space for the raw files. Alternatively, place
+an existing complete download directly in `data/artifacts/`. The full dataset
+is large; do not start a full rerun just to perform the quick verification above.
 
-The .py files have only input/output paths adapted for this shared layout;
-the analysis logic is retained. Original notebooks are included for reference:
-they still expect agent_skills_sample.db in the notebook's working directory
-and write rq2_outputs/. The commands above are the verified combined workflow.
+RQ2 processes Parquet parts in batches with resumable checkpoints under
+`RQ2_experiment_full_data/rq2_outputs/full_dataset/_work/`. Summary reports are
+finalized only after all parts are processed. `--max-parts 1` is a staged check,
+**not** a full result. Rerun the same command to resume. Preserve checkpoints
+unless the program reports an incompatible input/code fingerprint.
 
-## What RQ2 measures
+The three supplied full reports are `rq2_first_analysis_summary.txt`,
+`rq2_token_overhead_summary.txt`, and `rq2_quality_check.txt`.
+They report 1,571,893 single-repository and 306,088 reused contents; median
+tokens 1,206 and 1,257; and an overall repeated-token share of about 0.08%.
 
-- One representative per distinct content; groups use one versus at least two repositories.
-- First script: dataset body_chars, ATX-style Markdown headings outside fenced
-  code, and the representative folder's reference-file flag. Heading parsing
-  is heuristic, not a full Markdown parser, and scans the stored file text.
-- Token script: cl100k_base counts of the instruction body after removing
-  detected leading front matter, including code blocks in total token counts.
-- The 5,000-token threshold is a descriptive cutoff, not a model context limit.
-- Repetition means repeated blank-line-separated blocks WITHIN a file, outside
-  fenced code, matching after whitespace/case normalization, with at least
-  80 characters and 10 words. Later copies are counted; the first is not.
-- Repeated-block token share is summed separately tokenized repeated blocks
-  divided by summed body tokens. It is an indicator, not an exact counterfactual
-  saving from deleting text and not a measurement of wasted tokens.
-- These descriptive results do not establish causality, actual runtime,
-  task success, invocation frequency, or that repeated instructions are unnecessary.
+For the four manually reviewed examples, see `rq2_manual_review_completed.csv`
+and the evidence files in `rq2_outputs/example_audit/`. The exploratory false
+positive is not a false positive of the corrected detector. The false-negative
+example uses a broader repeated-list criterion than exact paragraph matching.
+See `README_EXAMPLE_AUDIT.md` for the optional search commands.
 
-## Files
+## Reproduce the manual RQ1 selection
 
-| Folder/file | Purpose |
-|---|---|
-| code/ | RQ1 scripts, checks, and original RQ1 notebook |
-| code/rq2/ | RQ2 scripts and original notebooks |
-| data/README.md | Dataset instructions |
-| results/rq1/ | Original RQ1 table snapshots and human coding |
-| results/rq2/ | Original RQ2 summaries |
-| out/ | Fresh results and verification records |
-| figures/ | Regenerated RQ1 result plots |
-| report/figures/ | Original figure snapshots; overview still incomplete |
-| RQ1_REVIEW.md | Earlier RQ1 audit and outstanding checks |
-| REPORT-INTEGRATION.md | Earlier draft edits; confirm against current RQ2 |
-| SUBMISSION-CHECKLIST.md | Remaining integration tasks |
+```powershell
+.\.venv\Scripts\python.exe code/make_coding_sheet.py data/agent_skills_sample.db verification/rq1_coding_sheet.xlsx
+```
+
+Selection uses seed 625: 20 most reused contents, 20 other reused contents and
+10 single-repository contents. The generated workbook reads the final codebook
+from `results/rq1/manual_codebook.csv`. Labels describe observed **placement
+patterns**, not verified copying direction or adoption provenance. The historical
+label `independent adoption` means copies in unrelated ordinary projects without
+another observed placement pattern; it does not prove independent adoption.
+
+## Report and assistance
+
+Compile `report/phase3-source/main.tex` in Overleaf with its accompanying files.
+Upload the final compiled PDF to the course submission together with the
+replication materials as permitted by Canvas. The manuscript acknowledges
+ChatGPT, Claude and Codex assistance. Authors remain responsible for the work.

@@ -1,0 +1,51 @@
+id,group,name,Q1,Q2,Q3,notes
+1,A: top-20 reused,shadcn,general,frontend,independent adoption,
+2,A: top-20 reused,vercel-react-best-practices,general,frontend,independent adoption,
+3,A: top-20 reused,minecraft-modpack-server,general,other,independent adoption,Cannot see any of the three patterns above.
+4,A: top-20 reused,Writing Hookify Rules,general,agent-meta,collection/mirror,
+5,A: top-20 reused,energy-procurement,general,domain,collection/mirror,
+6,A: top-20 reused,caveman-compress,general,agent-meta,independent adoption,
+7,A: top-20 reused,x-twitter-scraper,general,data-ml,collection/mirror,
+8,A: top-20 reused,security-ownership-map,general,testing,collection/mirror,
+9,A: top-20 reused,hybrid-cloud-architect,general,devops,collection/mirror,
+10,A: top-20 reused,reverse-engineer,general,testing,collection/mirror,Possibly teaches the agent to write its own script tasks or workflows.
+11,A: top-20 reused,openspec-verify-change,general,testing,independent adoption,
+12,A: top-20 reused,skill-optimizer,general,agent-meta,collection/mirror,
+13,A: top-20 reused,obsidian-cli,general,other,independent adoption,
+14,A: top-20 reused,memory-forensics,general,testing,independent adoption,Cannot tell which pattern.
+15,A: top-20 reused,hyperframes-registry,general,frontend,independent adoption,
+16,A: top-20 reused,api-security-testing,general,testing,collection/mirror,
+17,A: top-20 reused,varlock-claude-skill,general,devops,collection/mirror,
+18,A: top-20 reused,ponytail-gain,general,agent-meta,template/scaffold,"A reusable skill template that defines triggers, a fixed display format, data sources and behavior limits; other projects or agents can adopt or adapt it directly."
+19,A: top-20 reused,angular-migration,general,frontend,collection/mirror,
+20,A: top-20 reused,python-performance-optimization,general,backend,collection/mirror,
+21,B: random cross-repo,notion-api,general,backend,collection/mirror,
+22,B: random cross-repo,http-kit,general,backend,collection/mirror,
+23,B: random cross-repo,,general,domain,same-owner copy,
+24,B: random cross-repo,minecraft-world-generation,general,other,multi-agent install,
+25,B: random cross-repo,openmaic-classroom,general,backend,collection/mirror,Closer to backend integration and system configuration for AI applications.
+26,B: random cross-repo,auto-go,general,agent-meta,multi-agent install,Looks more like a skill distributed to support different AI agent platforms than one simply included in a skills collection.
+27,B: random cross-repo,moai-lang-typescript,general,frontend,collection/mirror,
+28,B: random cross-repo,,general,frontend,collection/mirror,
+29,B: random cross-repo,,general,data-ml,collection/mirror,
+30,B: random cross-repo,signal-state-management,project-specific,frontend,collection/mirror,
+31,B: random cross-repo,architecture-writer,general,docs,same-owner copy,
+32,B: random cross-repo,github-ops,general,devops,collection/mirror,
+33,B: random cross-repo,bio-systems-biology-metabolic-reconstruction,general,domain,collection/mirror,
+34,B: random cross-repo,app-creator,general,devops,collection/mirror,The repository describes itself as a collection of custom skills with several different purposes.
+35,B: random cross-repo,oci-functions-deploy,general,devops,independent adoption,
+36,B: random cross-repo,merge,project-specific,devops,template/scaffold,
+37,B: random cross-repo,prompt-optimizer,general,agent-meta,collection/mirror,
+38,B: random cross-repo,gh-cli-setup,general,devops,collection/mirror,
+39,B: random cross-repo,team-perf-opt,general,agent-meta,multi-agent install,"This case has clear cross-agent file-path evidence, so the label rests on more than the skill name."
+40,B: random cross-repo,Fossil SCM Usage,general,devops,collection/mirror,
+41,C: random single-repo,implementing-security-information-sharing-with-stix2,general,testing,,
+42,C: random single-repo,opti-review,project-specific,testing,,
+43,C: random single-repo,bossku-ai,project-specific,agent-meta,template/scaffold,"The file is at packages/bossku-ai/skills/bossku-ai/SKILL.md and is a Codex-specific skill entry point. BosskuAI provides scripts/install.sh, which installs agent rules, skills and configuration into other projects, so it acts as a reusable project setup tool."
+44,C: random single-repo,python-coding-rules,general,backend,,
+45,C: random single-repo,azure-infra,general,devops,collection/mirror,"The repository README states that it converts OpenClaw skills into a Claude skills marketplace, that the plugins/ folder holds skills collected and converted from OpenClaw, and that the repository is a mirror and distribution collection of community skills."
+46,C: random single-repo,outage-rescue,project-specific,backend,,
+47,C: random single-repo,story-readiness,general,testing,template/scaffold,"It mainly performs pre-implementation quality assurance: checking that acceptance criteria are clear and testable, verifying GDD requirements and ADR architecture references, checking dependencies, asset files and open design questions, verifying the definition of done and test evidence, and returning READY, NEEDS WORK or BLOCKED. So testing fits better than docs or agent-meta: it reads documents, but its main purpose is quality checking, not writing documents. GitHub marks the repository as a public template with preconfigured AI agents, skills, workflows and project structure for game development projects."
+48,C: random single-repo,fork-terminal,general,agent-meta,template/scaffold,This skill is distributed as part of a reusable project scaffold.
+49,C: random single-repo,twitter,general,domain,collection/mirror,"It uses the MediaUse CLI, but its main goal is social-media business tasks, not developing or maintaining software. The repository README says it manages MediaUse agent skills in one place, includes skills for Twitter, Instagram, Reddit, ChatGPT and other platforms, stores each platform's skill at <pluginName>/SKILL.md, and that the skills install into Claude Code, Codex, OpenClaw and Cursor."
+50,C: random single-repo,podcast-generation,general,data-ml,collection/mirror,The skill focuses on one task: turning text into podcast audio with the Azure OpenAI Realtime API. The repository is a large agent skills collection that gathers skills from many sources.
